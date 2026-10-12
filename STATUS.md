@@ -1,10 +1,11 @@
 # Agent status
 
-_Updated 2026-10-12 23:15 UTC · paper trading_
+_Updated 2026-10-12 23:26 UTC · paper trading_
 
 | agent | equity | return | open | closed | wins | realized P&L | AI spend (month) |
 |---|---|---|---|---|---|---|---|
-| follow | $997.39 | -0.26% | 2 | 0 | 0 | $+0.00 | $0.00 |
+| follow | $997.32 | -0.27% | 2 | 0 | 0 | $+0.00 | $0.00 |
+| priceaction | $1,000.00 | +0.00% | 0 | 0 | 0 | $+0.00 | $0.00 |
 | trend | $997.60 | -0.24% | 1 | 0 | 0 | $+0.00 | $0.00 |
 
 ### follow: open positions
