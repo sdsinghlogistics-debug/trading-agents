@@ -32,6 +32,19 @@ for path in sorted(glob.glob("agent_*.db")):
         details.append("| product | entry | stop | target | size | why |\n|---|---|---|---|---|---|")
         for c, e, s, t, n, th in opens:
             details.append(f"| {c} | {e:,.2f} | {s:,.2f} | {t:,.2f} | ${n:,.0f} | {(th or '')[:100]} |")
+    reads = kv.get("pa_read")
+    if reads:
+        details.append(f"\n### {name}: chart read (6h structure, 1h trigger)\n")
+        details.append("| product | price | 6h trend | support | resistance | 1h candle | setup / why not |\n|---|---|---|---|---|---|---|")
+        for pid, r in reads.items():
+            if r.get("error"):
+                details.append(f"| {pid} | | | | | | {r['error']} |")
+                continue
+            st = r["setup"]["why"] if r.get("setup") else (r.get("why_not") or (
+                "downtrend: no longs" if r["trend_6h"] == "down" else
+                "waiting for a bullish 1h candle at support" if not r["candle_1h"] else "not at a support level"))
+            details.append(f"| {pid} | {r['price']:,.2f} | {r['trend_6h']} | {r['support'] or '-'} | {r['resistance'] or '-'} | "
+                           f"{r['candle_1h'] or '-'} | {st} |")
     last = db.execute("select coin, outcome, pnl, thesis from trades where closed is not null order by closed desc limit 5").fetchall()
     if last:
         details.append(f"\n### {name}: last closed trades\n")

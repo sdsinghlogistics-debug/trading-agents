@@ -257,16 +257,18 @@ class Agent:
                 if t["coin"] in flips:
                     self._close(t, "consensus_flip")
         elif config.STRATEGY == "priceaction":
-            sigs = []
+            sigs, reads = [], {}
             for pid in config.UNIVERSE:
                 try:
                     r = pa.analyze(pid)
                 except Exception as e:
                     print("[pa]", pid, e)
                     continue
+                reads[pid] = r
                 if r.get("setup"):
                     sigs.append({"product": pid, "stop": r["setup"]["stop"], "target": r["setup"]["target"],
                                  "why": r["setup"]["why"]})
+            self.ledger.set("pa_read", reads)
             for t in opens:
                 if pa.structure_broken(t["coin"]):
                     self._close(t, "structure_break")
