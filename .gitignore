@@ -1,0 +1,4 @@
+agent_*.db-journal
+__pycache__/
+*.pyc
+.env

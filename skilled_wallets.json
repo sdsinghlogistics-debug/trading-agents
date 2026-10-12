@@ -1,0 +1,8 @@
+[
+  {"address": "0xf97ad6704baec104d00b88e0c157e2b7b3a1ddd1", "label": "Loco", "follow": true,
+   "why": "28 months of history, weekly t-stat 4.8 (5.7 with best 3 weeks removed), significant in both halves, +$194K last 90d, positive in all three 30-day blocks, 90d drawdown ~10%. Directional; trades HYPE mostly, also BTC/ETH/SOL. Uses 5-10x leverage: copy direction, not size."},
+  {"address": "0x6ba889db7f923622d3548f621ecc2054b80c1817", "label": "Basket-6ba8", "follow": false,
+   "why": "20 months, t-stat 3.9, but runs ~40 long/short positions at once (relative-value / market-neutral). Real edge, not copyable on spot. Shown to the news agent as context only."},
+  {"address": "0xc5ed4501500fcbfb2b88fb7f0aa52f834ed44346", "label": "Equities-c5ed", "follow": false,
+   "why": "30 months, t-stat 3.65, but trades tokenized stocks (SanDisk, SK Hynix, Samsung), not on Coinbase. Context only."}
+]
