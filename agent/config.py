@@ -55,7 +55,8 @@ MAX_HOLD_HOURS = _f("MAX_HOLD_HOURS", 168)           # 7 days: fees make short h
 FEE_PER_SIDE = _f("FEE_PER_SIDE", 0.012)
 
 # Which strategy this process runs: news | follow | trend. Run one process per strategy.
-STRATEGY = os.getenv("STRATEGY", "news")
+STRATEGY = os.getenv("STRATEGY", "news")  # news | follow | trend | priceaction
+PA_FILTER = os.getenv("PA_FILTER", "1") == "1"   # every agent must agree with price action before buying
 DB_PATH = os.getenv("DB_PATH", f"agent_{STRATEGY}.db")
 WALLETS_FILE = os.getenv("WALLETS_FILE", "skilled_wallets.json")
 HL_API = "https://api.hyperliquid.xyz"

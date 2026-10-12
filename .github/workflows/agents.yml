@@ -36,6 +36,11 @@ jobs:
         env: { STRATEGY: trend }
         continue-on-error: true
 
+      - name: price-action agent ($0)
+        run: python run.py --once
+        env: { STRATEGY: priceaction }
+        continue-on-error: true
+
       - name: news agent (only if an API key secret is set)
         if: ${{ env.ANTHROPIC_API_KEY != '' }}
         run: python run.py --once

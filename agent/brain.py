@@ -3,7 +3,7 @@ import json
 import os
 import time
 
-from . import coinbase, config, hl, kelly, llm, news, rules, triggers
+from . import coinbase, config, hl, kelly, llm, news, pa, rules, triggers
 from .execution import Executor
 from .ledger import Ledger
 
@@ -20,14 +20,16 @@ Each cycle you get fresh headlines. Work like a careful discretionary trader:
    or positioning extremes.
 3. Positioning (hyperliquid_positioning): crowded longs (high positive funding, rising OI) raise the risk
    of a flush; negative funding while price holds can fuel squeezes up.
-4. Followed traders (followed_trader_positions): accounts with a statistically significant multi-month
+4. Price action (price_action): ALWAYS check it before proposing. Place stops beyond a support zone,
+   targets at or before the next resistance. Don't buy into a 6h downtrend or right under resistance.
+5. Followed traders (followed_trader_positions): accounts with a statistically significant multi-month
    record. Their net exposure is evidence, not an order. Weigh it.
-5. web_search to verify facts and base rates.
-6. Only if you can name a concrete reason the price should rise, call propose_buy with a stop (where
+6. web_search to verify facts and base rates.
+7. Only if you can name a concrete reason the price should rise, call propose_buy with a stop (where
    the thesis is wrong — outside normal daily noise), a target, and p = probability the target is hit
    before the stop within {config.MAX_HOLD_HOURS / 24:.0f} days. Be calibrated; claims of p > 0.6 on a
    symmetric bracket need strong evidence.
-7. Review open positions (get_portfolio); call close_position if the thesis broke.
+8. Review open positions (get_portfolio); call close_position if the thesis broke.
 
 STRATEGY FOCUS ({config.STRATEGY}): {{focus}}
 
@@ -54,6 +56,8 @@ TOOLS = [
      "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "interval": {"type": "string"},
                                                         "hours": {"type": "integer"}}, "required": ["product"]}},
     {"name": "hyperliquid_positioning", "description": "Perp funding, open interest and premium for the product's underlying.",
+     "input_schema": {"type": "object", "properties": {"product": {"type": "string"}}, "required": ["product"]}},
+    {"name": "price_action", "description": "Price-action read: 6h trend/structure, nearest support and resistance zones, ATR, last 1h candle signal, and any valid long setup.",
      "input_schema": {"type": "object", "properties": {"product": {"type": "string"}}, "required": ["product"]}},
     {"name": "followed_trader_positions", "description": "Live positions of the verified skilled traders, aggregated by coin.",
      "input_schema": {"type": "object", "properties": {}}},
@@ -117,6 +121,8 @@ class Agent:
             return coinbase.candles(a["product"], a.get("interval", "1h"), a.get("hours", 72))[-80:]
         if name == "hyperliquid_positioning":
             return hl.positioning(config.UNIVERSE.get(a["product"], a["product"].split("-")[0]))
+        if name == "price_action":
+            return pa.analyze(a["product"])
         if name == "followed_trader_positions":
             agg = {}
             for w in self.wallets:  # all verified traders, incl. context-only
@@ -168,6 +174,10 @@ class Agent:
     def _enter(self, pid, stop, target, s, a):
         if not s["ok"]:
             return {"refused": s["reason"]}
+        if config.PA_FILTER and config.STRATEGY != "priceaction":
+            ok, why = pa.confirms_long(pid)
+            if not ok:
+                return {"refused": f"price action disagrees: {why}"}
         amount = min(s["amount"], self.ledger.get("cash"))
         fill = self.exec.buy(pid, amount, stop, target)
         if not fill["filled"]:
@@ -246,6 +256,20 @@ class Agent:
             for t in opens:
                 if t["coin"] in flips:
                     self._close(t, "consensus_flip")
+        elif config.STRATEGY == "priceaction":
+            sigs = []
+            for pid in config.UNIVERSE:
+                try:
+                    r = pa.analyze(pid)
+                except Exception as e:
+                    print("[pa]", pid, e)
+                    continue
+                if r.get("setup"):
+                    sigs.append({"product": pid, "stop": r["setup"]["stop"], "target": r["setup"]["target"],
+                                 "why": r["setup"]["why"]})
+            for t in opens:
+                if pa.structure_broken(t["coin"]):
+                    self._close(t, "structure_break")
         else:
             sigs = rules.trend_signals()
         if self.halted():
@@ -257,9 +281,10 @@ class Agent:
             if pid in held or len(self.ledger.open_trades()) >= config.MAX_POSITIONS:
                 continue
             px, stop, target = rules.bracket(pid, sg.get("stop"))
+            target = sg.get("target") or target
             deployed = sum(t["notional"] for t in self.ledger.open_trades())
             s = (kelly.size(p, px, stop, target, self.equity(), 1.0, deployed) if p is not None
-                 else kelly.size_fixed(px, stop, self.equity(), deployed))
+                 else kelly.size_fixed(px, stop, self.equity(), deployed, target))
             r = self._enter(pid, stop, target, s, {"thesis": sg["why"], "p_target_first": p, "confidence": 1.0})
             log.append(f"{pid}: {r.get('refused') or 'opened'}")
         sizing = f"empirical Kelly p={p:.2f} (n={n})" if p is not None else f"fixed {config.FIXED_RISK:.1%} risk until {config.MIN_TRADES_FOR_KELLY} trades (have {n})"

@@ -8,10 +8,12 @@ Amount invested = (f * equity) / sl, because a stop-out loses invested * sl.
 from . import config
 
 
-def size_fixed(entry, stop, equity, deployed):
+def size_fixed(entry, stop, equity, deployed, target=None):
     """Rule strategies before they have a track record: risk a small fixed % of equity."""
     sl = (entry - stop) / entry + 2 * config.FEE_PER_SIDE
-    amount = min(config.FIXED_RISK * equity / sl, max(0.0, config.MAX_GROSS * equity - deployed))
+    if target is not None and (target - entry) / entry <= 2 * config.FEE_PER_SIDE:
+        return {"ok": False, "reason": "target is inside round-trip fees"}
+    amount =min(config.FIXED_RISK * equity / sl, max(0.0, config.MAX_GROSS * equity - deployed))
     if amount < 10:
         return {"ok": False, "reason": "size below $10"}
     return {"ok": True, "amount": round(amount, 2), "risk_usd": round(amount * sl, 2),
