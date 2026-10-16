@@ -1,12 +1,12 @@
 # Agent status
 
-_Updated 2026-10-16 12:19 UTC · paper trading_
+_Updated 2026-10-16 17:21 UTC · paper trading_
 
 | agent | equity | return | open | closed | wins | realized P&L | AI spend (month) |
 |---|---|---|---|---|---|---|---|
-| follow | $996.22 | -0.38% | 3 | 0 | 0 | $+0.00 | $0.00 |
+| follow | $992.10 | -0.79% | 3 | 0 | 0 | $+0.00 | $0.00 |
 | priceaction | $1,000.00 | +0.00% | 0 | 0 | 0 | $+0.00 | $0.00 |
-| trend | $997.89 | -0.21% | 1 | 0 | 0 | $+0.00 | $0.00 |
+| trend | $996.26 | -0.37% | 1 | 0 | 0 | $+0.00 | $0.00 |
 
 ### follow: open positions
 
@@ -20,10 +20,10 @@ _Updated 2026-10-16 12:19 UTC · paper trading_
 
 | product | price | 6h trend | support | resistance | 1h candle | setup / why not |
 |---|---|---|---|---|---|---|
-| BTC-USD | 82,226.50 | down | 80927.48 | 83452.99 | - | downtrend: no longs |
-| ETH-USD | 2,466.95 | down | 2409.085 | 2489.9 | - | downtrend: no longs |
-| SOL-USD | 106.07 | down | 105.4 | 107.955 | - | downtrend: no longs |
-| PAXG-USD | 4,168.07 | down | 4149.0 | 4190.23 | - | downtrend: no longs |
+| BTC-USD | 80,857.45 | down | 80301.75 | 81774.15 | - | downtrend: no longs |
+| ETH-USD | 2,396.47 | down | 2313.07 | 2489.9 | - | downtrend: no longs |
+| SOL-USD | 103.05 | down | 99.785 | 105.4 | - | downtrend: no longs |
+| PAXG-USD | 4,154.14 | down | 4149.0 | 4190.23 | - | downtrend: no longs |
 
 ### trend: open positions
 
