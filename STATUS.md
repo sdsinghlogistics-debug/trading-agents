@@ -1,12 +1,12 @@
 # Agent status
 
-_Updated 2026-10-19 01:07 UTC · paper trading_
+_Updated 2026-10-19 07:40 UTC · paper trading_
 
 | agent | equity | return | open | closed | wins | realized P&L | AI spend (month) |
 |---|---|---|---|---|---|---|---|
-| follow | $994.42 | -0.56% | 3 | 0 | 0 | $+0.00 | $0.00 |
+| follow | $995.68 | -0.43% | 3 | 0 | 0 | $+0.00 | $0.00 |
 | priceaction | $1,000.00 | +0.00% | 0 | 0 | 0 | $+0.00 | $0.00 |
-| trend | $998.04 | -0.20% | 1 | 0 | 0 | $+0.00 | $0.00 |
+| trend | $998.58 | -0.14% | 1 | 0 | 0 | $+0.00 | $0.00 |
 
 ### follow: open positions
 
@@ -20,10 +20,10 @@ _Updated 2026-10-19 01:07 UTC · paper trading_
 
 | product | price | 6h trend | support | resistance | 1h candle | setup / why not |
 |---|---|---|---|---|---|---|
-| BTC-USD | 82,309.60 | range | 82104.0 | 82831.01 | - | waiting for a bullish 1h candle at support |
-| ETH-USD | 2,415.80 | down | 2360.375 | 2490.77 | bullish pin bar | downtrend: no longs |
-| SOL-USD | 104.47 | down | 102.835 | 105.4 | - | downtrend: no longs |
-| PAXG-USD | 4,160.00 | range | 4149.0 | 4173.79 | - | waiting for a bullish 1h candle at support |
+| BTC-USD | 82,729.45 | range | 82808.7 | 82831.01 | bullish engulfing | target 82831.0100 pays -2.28% vs risk 2.93% after 2.4% fees; need 2:1 |
+| ETH-USD | 2,430.61 | down | 2313.07 | 2490.77 | - | downtrend: no longs |
+| SOL-USD | 105.63 | down | 105.62 | 107.385 | bullish engulfing | downtrend: no longs |
+| PAXG-USD | 4,174.09 | range | 4173.79 | 4195.835 | bullish pin bar | target 4185.0000 pays -2.14% vs risk 2.51% after 2.4% fees; need 2:1 |
 
 ### trend: open positions
 
