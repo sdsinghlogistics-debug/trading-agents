@@ -1,37 +1,31 @@
 # Agent status
 
-_Updated 2026-11-05 15:23 UTC · paper trading_
+_Updated 2026-11-05 21:55 UTC · paper trading_
 
 | agent | equity | return | open | closed | wins | realized P&L | AI spend (month) |
 |---|---|---|---|---|---|---|---|
-| follow | $977.07 | -2.29% | 1 | 7 | 1 | $-18.34 | $0.00 |
+| follow | $976.53 | -2.35% | 0 | 8 | 1 | $-23.47 | $0.00 |
 | priceaction | $1,000.00 | +0.00% | 0 | 0 | 0 | $+0.00 | $0.00 |
 | trend | $992.63 | -0.74% | 0 | 2 | 0 | $-7.37 | $0.00 |
-
-### follow: open positions
-
-| product | entry | stop | target | size | why |
-|---|---|---|---|---|---|
-| SOL-USD | 95.89 | 90.35 | 106.98 | $60 | 1/1 followed traders long, avg weight 13% |
 
 ### follow: last closed trades
 
 | product | result | P&L | why it was taken |
 |---|---|---|---|
+| SOL-USD | stop | $-5.13 | 1/1 followed traders long, avg weight 13% |
 | ETH-USD | timeout | $-2.35 | 1/1 followed traders long, avg weight 17% |
 | SOL-USD | timeout | $-3.60 | 1/1 followed traders long, avg weight 9% |
 | BTC-USD | timeout | $-3.05 | 1/1 followed traders long, avg weight 13% |
 | ETH-USD | stop | $-5.10 | 1/1 followed traders long, avg weight 8% |
-| BTC-USD | timeout | $+0.43 | 1/1 followed traders long, avg weight 12% |
 
 ### priceaction: chart read (6h structure, 1h trigger)
 
 | product | price | 6h trend | support | resistance | 1h candle | setup / why not |
 |---|---|---|---|---|---|---|
-| BTC-USD | 76,779.21 | range | - | 82188.01 | - | waiting for a bullish 1h candle at support |
-| ETH-USD | 2,281.57 | range | 2228.25 | 2314.92 | - | waiting for a bullish 1h candle at support |
-| SOL-USD | 90.71 | down | 90.215 | 97.73 | - | downtrend: no longs |
-| PAXG-USD | 4,097.51 | range | 4083.065 | 4187.66 | - | waiting for a bullish 1h candle at support |
+| BTC-USD | 75,724.28 | range | - | 82188.01 | bullish pin bar | not at a support level |
+| ETH-USD | 2,227.20 | range | 2228.25 | 2314.92 | - | waiting for a bullish 1h candle at support |
+| SOL-USD | 89.83 | down | 90.215 | 97.73 | - | downtrend: no longs |
+| PAXG-USD | 4,076.30 | up | 4083.065 | 4078.8 | - | waiting for a bullish 1h candle at support |
 
 ### trend: last closed trades
 
