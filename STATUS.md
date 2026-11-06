@@ -1,6 +1,6 @@
 # Agent status
 
-_Updated 2026-11-06 02:17 UTC · paper trading_
+_Updated 2026-11-06 10:43 UTC · paper trading_
 
 | agent | equity | return | open | closed | wins | realized P&L | AI spend (month) |
 |---|---|---|---|---|---|---|---|
@@ -22,10 +22,10 @@ _Updated 2026-11-06 02:17 UTC · paper trading_
 
 | product | price | 6h trend | support | resistance | 1h candle | setup / why not |
 |---|---|---|---|---|---|---|
-| BTC-USD | 75,967.75 | range | - | 82188.01 | - | waiting for a bullish 1h candle at support |
-| ETH-USD | 2,234.58 | range | 2228.25 | 2314.92 | - | waiting for a bullish 1h candle at support |
-| SOL-USD | 89.82 | down | 90.215 | 97.73 | bullish pin bar | downtrend: no longs |
-| PAXG-USD | 4,057.96 | up | 4034.1 | 4078.8 | - | waiting for a bullish 1h candle at support |
+| BTC-USD | 76,129.43 | range | - | 82188.01 | - | waiting for a bullish 1h candle at support |
+| ETH-USD | 2,238.88 | range | 2228.25 | 2314.92 | bullish engulfing | target 2314.9200 pays 1.00% vs risk 3.76% after 2.4% fees; need 2:1 |
+| SOL-USD | 90.09 | down | 90.215 | 97.73 | bullish engulfing | downtrend: no longs |
+| PAXG-USD | 4,057.11 | up | 4034.1 | 4078.8 | - | waiting for a bullish 1h candle at support |
 
 ### trend: last closed trades
 
