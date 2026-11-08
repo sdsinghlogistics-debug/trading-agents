@@ -1,6 +1,6 @@
 # Agent status
 
-_Updated 2026-11-07 20:49 UTC · paper trading_
+_Updated 2026-11-08 00:27 UTC · paper trading_
 
 | agent | equity | return | open | closed | wins | realized P&L | AI spend (month) |
 |---|---|---|---|---|---|---|---|
@@ -22,10 +22,10 @@ _Updated 2026-11-07 20:49 UTC · paper trading_
 
 | product | price | 6h trend | support | resistance | 1h candle | setup / why not |
 |---|---|---|---|---|---|---|
-| BTC-USD | 75,552.28 | range | 74816.765 | 82188.01 | bullish pin bar | not at a support level |
-| ETH-USD | 2,225.19 | down | 2217.885 | 2250.35 | - | downtrend: no longs |
-| SOL-USD | 89.05 | down | 87.975 | 91.48 | - | downtrend: no longs |
-| PAXG-USD | 4,061.23 | range | 4034.1 | 4074.77 | - | waiting for a bullish 1h candle at support |
+| BTC-USD | 75,701.39 | range | 74816.765 | 80522.65 | - | waiting for a bullish 1h candle at support |
+| ETH-USD | 2,235.35 | down | 2228.25 | 2250.35 | - | downtrend: no longs |
+| SOL-USD | 89.47 | down | 89.73 | 91.48 | - | downtrend: no longs |
+| PAXG-USD | 4,059.50 | range | 4034.1 | 4074.77 | - | waiting for a bullish 1h candle at support |
 
 ### trend: last closed trades
 
